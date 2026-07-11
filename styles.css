@@ -379,7 +379,10 @@ img { display: block; max-width: 100%; }
 }
 
 .about-photo {
+  display: block;
   width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center top;
