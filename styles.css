@@ -66,6 +66,16 @@ img { display: block; max-width: 100%; }
 }
 .site-nav .logo span { color: var(--gold); }
 
+.site-nav .logo-img {
+  display: flex;
+  align-items: center;
+}
+.site-nav .logo-img img {
+  display: block;
+  height: 30px;
+  width: auto;
+}
+
 .nav-links {
   display: flex;
   gap: 2rem;
