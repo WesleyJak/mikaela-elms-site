@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrangements — Mikaela Elms</title>
+  <meta name="description" content="Browse all cello arrangements by Mikaela Elms — solo, duet, and ensemble. Purchase instantly on SheetMusicPlus." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="index.html" class="logo">Mikaela <span>Elms</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="arrangements.html" class="active">Arrangements</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Page hero ───────────────────────────────────────────── -->
+<div class="page-hero">
+  <p class="section-label">Sheet Music</p>
+  <h1>All Arrangements</h1>
+  <p>Purchase instantly on SheetMusicPlus — download and play today.</p>
+</div>
+
+<!-- ── Catalog ─────────────────────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Filter bar -->
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="solo">Solo Cello</button>
+      <button class="filter-btn" data-filter="duet">Cello Duet</button>
+      <button class="filter-btn" data-filter="group">Cello Ensemble</button>
+    </div>
+
+    <!-- Card grid -->
+    <div class="card-grid" id="catalog-grid">
+      <!-- Populated by JS -->
+    </div>
+
+    <p id="empty-msg" style="text-align:center;color:var(--text-light);display:none;margin-top:2rem;">
+      No arrangements found for that filter.
+    </p>
+
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────────── -->
+<section style="background:#2C1E10; padding:3.5rem 2rem; text-align:center;">
+  <p class="section-label">Don't see what you need?</p>
+  <h2 style="font-family:var(--serif);font-size:1.8rem;color:#F5EFE6;margin-bottom:1rem;">Commission a Custom Arrangement</h2>
+  <p style="color:rgba(245,239,230,0.7);max-width:520px;margin:0 auto 1.75rem;font-size:0.97rem;">
+    If you have a specific piece in mind, Mikaela can arrange it for your ensemble.
+    Weddings, recitals, and special occasions welcome.
+  </p>
+  <a href="contact.html" class="btn btn-gold">Get in Touch</a>
+</section>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-logo">Mikaela <span>Elms</span></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="arrangements.html">Arrangements</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copyright">&copy; <span id="year"></span> Mikaela Elms. All arrangements are protected by copyright.</p>
+</footer>
+
+<!-- ── Scripts ─────────────────────────────────────────────── -->
+<script src="arrangements-data.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const noteSVG = `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9A7230" stroke-width="1.2">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>`;
+
+  function buildCard(item) {
+    const thumb = item.image
+      ? `<img class="card-thumb" src="${item.image}" alt="${item.title}" loading="lazy">`
+      : `<div class="card-thumb-placeholder">${noteSVG}</div>`;
+    return `
+      <div class="arrangement-card" data-type="${item.type}">
+        <a href="${item.link}" target="_blank" rel="noopener">${thumb}</a>
+        <div class="card-body">
+          <span class="card-tag">${TYPE_LABELS[item.type]}</span>
+          <div class="card-title">${item.title}</div>
+          <p class="card-desc">${item.desc}</p>
+          <a class="card-link" href="${item.link}" target="_blank" rel="noopener">${STORE_LABELS[item.store] || 'Buy Now ↗'}</a>
+        </div>
+      </div>`;
+  }
+
+  const grid = document.getElementById('catalog-grid');
+  grid.innerHTML = ARRANGEMENTS.map(buildCard).join('');
+
+  /* Filter */
+  document.getElementById('filter-bar').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    let count = 0;
+    document.querySelectorAll('.arrangement-card').forEach(card => {
+      const show = f === 'all' || card.dataset.type === f;
+      card.style.display = show ? '' : 'none';
+      if (show) count++;
+    });
+    document.getElementById('empty-msg').style.display = count === 0 ? '' : 'none';
+  });
+</script>
+</body>
+</html>

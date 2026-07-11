@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Mikaela Elms</title>
+  <meta name="description" content="About Mikaela Elms — cellist, educator, and arranger based in Albuquerque, New Mexico." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="index.html" class="logo">Mikaela <span>Elms</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="arrangements.html">Arrangements</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Page hero ───────────────────────────────────────────── -->
+<div class="page-hero">
+  <p class="section-label">The Arranger</p>
+  <h1>About Mikaela</h1>
+</div>
+
+<!-- ── About content ───────────────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <!-- Photo -->
+      <div>
+        <!-- Replace the placeholder below with:
+             <img class="about-photo" src="images/mikaela.jpg" alt="Mikaela Elms">
+             once you have a photo ready. -->
+        <div class="about-photo-placeholder">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#9A7230" stroke-width="1" opacity="0.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-text">
+        <div class="about-sub">Cellist · Educator · Arranger</div>
+        <h2>Mikaela Elms</h2>
+
+        <p>
+          Mikaela Elms is a cellist, string educator, and music arranger based in Albuquerque, New Mexico.
+          She has spent over a decade immersed in the Albuquerque music scene — as a performing musician,
+          a private studio teacher, and an active presence in the local school orchestra community.
+        </p>
+
+        <p>
+          Mikaela holds a Bachelor of Music in Music Performance and has maintained a full-time private
+          cello studio since 2015, teaching students from beginner through advanced levels. Alongside
+          individual lessons, she has coached cello group classes and chamber string ensembles of
+          varying sizes, giving her a breadth of experience across formats and skill levels.
+        </p>
+
+        <p>
+          As a performer, Mikaela is a cellist with the
+          <strong>Albuquerque Philharmonic Orchestra</strong> and has performed at a wide range
+          of events including weddings, corporate concerts, and chamber recitals throughout New Mexico.
+        </p>
+
+        <p>
+          Her arranging work grew naturally out of a desire to find the right piece for every student
+          and ensemble — and when the right piece didn't exist, she created it. She now publishes her
+          string arrangements online through SheetMusicPlus, where they are used by players and
+          educators around the world.
+        </p>
+
+        <p>
+          Mikaela is currently pursuing alternative teacher licensure and teaches orchestra in the
+          Albuquerque public school district. She has also served as a judge at multiple district-level
+          orchestra competitions.
+        </p>
+
+        <!-- Credentials grid -->
+        <div class="about-credentials">
+          <div class="credential">
+            <h4>Albuquerque Philharmonic Orchestra</h4>
+            <p>Active cellist · Albuquerque, NM</p>
+          </div>
+          <div class="credential">
+            <h4>Private Studio</h4>
+            <p>Full-time cello instruction since 2015</p>
+          </div>
+          <div class="credential">
+            <h4>Ensemble Coaching</h4>
+            <p>Cello group, chamber strings, and sectionals</p>
+          </div>
+          <div class="credential">
+            <h4>Competition Adjudicator</h4>
+            <p>APS district orchestra competitions</p>
+          </div>
+          <div class="credential">
+            <h4>Education</h4>
+            <p>Bachelor of Music — Music Performance<br><em>[University Name]</em></p>
+          </div>
+          <div class="credential">
+            <h4>Arranging</h4>
+            <p>Published on SheetMusicPlus via ArrangeMe</p>
+          </div>
+        </div>
+
+      </div><!-- /about-text -->
+    </div><!-- /about-grid -->
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────────── -->
+<section style="background:#FAF7F2; padding:3.5rem 2rem; text-align:center; border-top:1px solid var(--border);">
+  <h2 style="font-family:var(--serif);font-size:1.8rem;color:var(--text);margin-bottom:1rem;">
+    Ready to explore the catalog?
+  </h2>
+  <a href="arrangements.html" class="btn btn-gold" style="margin-right:1rem;">Browse Arrangements</a>
+  <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+</section>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-logo">Mikaela <span>Elms</span></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="arrangements.html">Arrangements</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copyright">&copy; <span id="year"></span> Mikaela Elms. All arrangements are protected by copyright.</p>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

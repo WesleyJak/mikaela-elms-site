@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mikaela Elms — Cello Arrangements</title>
+  <meta name="description" content="Original and licensed string arrangements by cellist and educator Mikaela Elms, based in Albuquerque, New Mexico." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="index.html" class="logo">Mikaela <span>Elms</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="arrangements.html">Arrangements</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Cello Arrangements by</p>
+    <h1>Mikaela <em>Elms</em></h1>
+    <p class="hero-sub">Beautifully crafted string arrangements for solo, duet, and ensemble — perfect for weddings, events, and the joy of playing.</p>
+    <a href="arrangements.html" class="btn btn-gold">Browse Arrangements</a>
+  </div>
+</section>
+
+<!-- ── Featured Arrangements ───────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">Sheet Music</p>
+    <h2 class="section-title">Featured Arrangements</h2>
+    <p class="section-sub">A selection of recent and popular pieces — click any title to purchase instantly on SheetMusicPlus.</p>
+    <div class="divider"></div>
+
+    <div class="card-grid" id="featured-grid">
+      <!-- Populated by JS -->
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="arrangements.html" class="btn btn-outline">View All Arrangements</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── About strip ─────────────────────────────────────────── -->
+<section class="about-strip">
+  <p class="section-label">About Mikaela</p>
+  <h2 class="section-title" style="color:#F5EFE6;">Musician. Educator. Arranger.</h2>
+  <div class="divider"></div>
+  <p>
+    Mikaela Elms is a cellist, private studio teacher, and arranger based in Albuquerque, New Mexico.
+    A performer with the Albuquerque Philharmonic Orchestra and a dedicated string educator since 2015,
+    she brings both professional musicianship and a deep love of teaching to everything she creates.
+    Her arrangements are designed to be beautiful to hear and a pleasure to play.
+  </p>
+  <a href="about.html" class="btn btn-outline" style="border-color:#A07830;color:#A07830;">Learn More</a>
+</section>
+
+<!-- ── Custom Arrangements callout ─────────────────────────── -->
+<section class="section" style="background:#FAF7F2; padding: 4rem 2rem;">
+  <div class="section-inner" style="max-width:680px; text-align:center;">
+    <p class="section-label">Custom Work</p>
+    <h2 class="section-title">Need Something Specific?</h2>
+    <div class="divider"></div>
+    <p style="color:var(--text-mid); font-size:1.02rem; margin-bottom:2rem; line-height:1.8;">
+      Have a song in mind that isn't in the catalog? Mikaela offers custom arrangement commissions
+      for weddings, recitals, and special occasions. Get in touch to discuss your needs.
+    </p>
+    <a href="contact.html" class="btn btn-gold">Request a Custom Arrangement</a>
+  </div>
+</section>
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-logo">Mikaela <span>Elms</span></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="arrangements.html">Arrangements</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copyright">&copy; <span id="year"></span> Mikaela Elms. All arrangements are protected by copyright.</p>
+</footer>
+
+<!-- ── Scripts ─────────────────────────────────────────────── -->
+<script src="arrangements-data.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Music note SVG placeholder */
+  const noteSVG = `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9A7230" stroke-width="1.2">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>`;
+
+  function buildCard(item) {
+    const thumb = item.image
+      ? `<img class="card-thumb" src="${item.image}" alt="${item.title}" loading="lazy">`
+      : `<div class="card-thumb-placeholder">${noteSVG}</div>`;
+    return `
+      <div class="arrangement-card">
+        <a href="${item.link}" target="_blank" rel="noopener">${thumb}</a>
+        <div class="card-body">
+          <span class="card-tag">${TYPE_LABELS[item.type]}</span>
+          <div class="card-title">${item.title}</div>
+          <p class="card-desc">${item.desc}</p>
+          <a class="card-link" href="${item.link}" target="_blank" rel="noopener">${STORE_LABELS[item.store] || 'Buy Now ↗'}</a>
+        </div>
+      </div>`;
+  }
+
+  const featured = ARRANGEMENTS.filter(a => a.featured).slice(0, 4);
+  document.getElementById('featured-grid').innerHTML = featured.map(buildCard).join('');
+</script>
+</body>
+</html>
