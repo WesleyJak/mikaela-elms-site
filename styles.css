@@ -522,8 +522,8 @@ img { display: block; max-width: 100%; }
 
 /* ── Hero logo ────────────────────────────────────────────── */
 .hero-logo {
-  max-width: 300px;
-  width: 70%;
+  max-width: 220px;
+  width: 55%;
   height: auto;
   margin: 0 auto 1.5rem;
 }
